@@ -1,8 +1,13 @@
-const router = require('express').Router()
-const apiRoutes = require('./api')
-const viewRoutes = require('./viewRoutes')
+// Importing Express's router and route modules
+const router = require('express').Router();
+const apiRoutes = require('./api');
+const viewRoutes = require('./viewRoutes');
 
-router.use('/api', apiRoutes)
-router.use(viewRoutes)
+// Registering API routes with '/api' prefix
+router.use('/api', apiRoutes);
 
-module.exports = router
+// Registering View routes (no specific prefix, defaults to '/')
+router.use(viewRoutes);
+
+// Exporting the configured router for use in the application
+module.exports = router;

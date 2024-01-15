@@ -1,17 +1,17 @@
 [
     {
-        "title":"Coding just took the next step",
-        "content":"Chat GPT asked me to call it Orion",
+        "title":"Mhy MVC is so important",
+        "content":"MVC allows developers to maintain a true separation of concerns, devising their code between the Model layer for data, the View layer for design, and the Controller layer for application logic",
         "user_id":1
     },
     {
-        "title":"If you can program a microwave, you can program an app",
-        "content":"Setting timers and limits is a foundation for coding",
+        "title":"Authentication vs Authorization",
+        "content":"There is a difference between authentication and authorization. Authentication means confirming your own identity, whereas authorization means being allowed access to the system",
         "user_id":2
     },
     {
-        "title":"Be careful of those named Jeff",
-        "content":"I am not Jeff, but maybe I am?",
+        "title":"Object-Relational Mapping",
+        "content":"I have really loved learning about ORMs. It's really simplified the way I create queries in SQL!",
         "user_id":3
     }
 ]

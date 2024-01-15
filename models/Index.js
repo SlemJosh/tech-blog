@@ -30,3 +30,5 @@ Comment.belongsTo(User, {
 })
 
 module.exports = {User, Blog, Comment}
+
+// Testing

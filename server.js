@@ -1,47 +1,56 @@
-const express = require('express')
-const session = require('express-session')
-const exphbs = require('express-handlebars')
-const routes = require('./controllers')
-const helpers = require('./utils/helpers')
+// Import necessary modules
+const express = require('express');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const routes = require('./controllers');
+const helpers = require('./utils/helpers');
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const sequelize = require('./config/connection')
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
+// Initialize the Express application
+const app = express();
 
-const app = express()
-const PORT = process.env.PORT || 3001
+// Set the port from environment variables or default to 3001
+const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({helpers})
+// Set up Handlebars with custom helpers
+const hbs = exphbs.create({ helpers });
 
+// Session configuration
 const sess = {
-    secret: 'Super secret secret',
+    secret: 'Super secret secret', // Secret for signing the session ID cookie
     cookie: {
-      maxAge: 300000,
-      httpOnly: true,
-      secure: false,
-      sameSite: 'strict',
+        maxAge: 300000, // Cookie expiration time in milliseconds
+        httpOnly: true, // Prevents client-side JavaScript from reading the cookie
+        secure: false, // True if using HTTPS
+        sameSite: 'strict', // Strict same-site policy to mitigate CSRF attacks
     },
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize
+    resave: false, // Avoids resaving sessions that haven't been modified
+    saveUninitialized: true, // Saves new sessions even if not modified
+    store: new SequelizeStore({ // Session store using Sequelize
+        db: sequelize
     })
-  };
-  
-  // Use the session configuration
-  app.use(session(sess));
+};
 
-app.use(session(sess))
+// Apply the session middleware to the application
+app.use(session(sess));
 
-app.engine('handlebars', hbs.engine)
-app.set('view engine', 'handlebars')
-app.set('views', './views')
+// Set up Handlebars as the view engine
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 
-app.use(express.static('public'))
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
 
-app.use(routes)
+// Middleware for parsing JSON and URL-encoded form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-sequelize.sync({force: false}).then(() => {
-  app.listen(PORT, () => console.log(`Now listening on ${PORT}`))
-})
+// Import and use application routes
+app.use(routes);
+
+// Sync Sequelize models to the database, then start the server
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
+});

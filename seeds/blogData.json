@@ -1,0 +1,17 @@
+[
+    {
+        "title":"Coding just took the next step",
+        "content":"Chat GPT asked me to call it Orion",
+        "user_id":1
+    },
+    {
+        "title":"If you can program a microwave, you can program an app",
+        "content":"Setting timers and limits is a foundation for coding",
+        "user_id":2
+    },
+    {
+        "title":"Be careful of those named Jeff",
+        "content":"I am not Jeff, but maybe I am?",
+        "user_id":3
+    }
+]

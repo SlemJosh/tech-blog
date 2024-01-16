@@ -23,6 +23,8 @@ This project will run on via the heroku link contained below. If you were to wan
 
 On a local machine you will just need to run an npm start. On heroku, it is running as is.
 
+Check out the deployed [heroku page](https://slem-tech-blog-91d81cf34c26.herokuapp.com/) to check out and test the blog for yourself!
+
 ## ![Tech Blog Screenshot](/public/images/sample.png)
 
 ## ![Tech Blog Screenshot](/public/images/sample2.png)
